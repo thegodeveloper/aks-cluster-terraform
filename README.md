@@ -14,3 +14,9 @@ To run locally:
 ```shell
 az aks get-versions --location centralus -o table
 ```
+
+## Connect to Azure AKS Cluster
+
+````shell
+az aks get-credentials --resource-group terraform-aks-dev --name terraform-aks-dev-cluster --admin --overwrite-existing
+````
