@@ -8,9 +8,9 @@
 
 # 1. Terraform Settings Block
 terraform {
-  # 1. Required Version Terraform
-  required_version = ">= 1.0"
-  # 2. Required Terraform Providers  
+  # 1.1. Required Version Terraform
+  required_version = ">= 1.9"
+  # 1.2. Required Terraform Providers
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"

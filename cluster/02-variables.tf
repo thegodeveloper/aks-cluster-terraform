@@ -24,3 +24,9 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+# SSH Public Key for Linux VMs
+variable "ssh_public_key" {
+  default = "~/.ssh/id_rsa.pub"
+  description = "This variable defines the SSH Public Key for Linux k8s Worker nodes"
+}
