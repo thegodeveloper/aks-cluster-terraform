@@ -20,3 +20,14 @@ az aks get-versions --location centralus -o table
 ````shell
 az aks get-credentials --resource-group terraform-aks-dev --name terraform-aks-dev-cluster --admin --overwrite-existing
 ````
+
+## Get full cluster information
+
+```shell
+az aks show --resource-group terraform-aks-dev --name terraform-aks-dev-cluster -o table
+Name                       Location    ResourceGroup      KubernetesVersion    CurrentKubernetesVersion    ProvisioningState    Fqdn
+-------------------------  ----------  -----------------  -------------------  --------------------------  -------------------  ----------------------------------------------------------
+terraform-aks-dev-cluster  centralus   terraform-aks-dev  1.30.5               1.30.5                      Succeeded            terraform-aks-dev-cluster-v9d60zfc.hcp.centralus.azmk8s.io
+```
+
+
