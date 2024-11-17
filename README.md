@@ -46,6 +46,14 @@ Get the IP Address of the `app1-nginx-clusterip-service` service.
 http://IP_LOAD_BALANCER/app1/
 ```
 
+### Delete the Webserver Application
+
+```shell
+k delete -f ./kubernetes/manifests/apps/webserver/
+deployment.apps "app1-nginx-deployment" deleted
+service "app1-nginx-clusterip-service" deleted
+```
+
 ## Deploy the Java Application
 
 ```shell
@@ -68,4 +76,17 @@ http://IP_LOAD_BALANCER
 
 Username: admin101
 Password: password101
+```
+
+### Delete the Java Application
+
+```shell
+k delete -f ./kubernetes/manifests/apps/java/
+storageclass.storage.k8s.io "managed-premium-retain-sc" deleted
+persistentvolumeclaim "azure-managed-disk-pvc" deleted
+configmap "usermanagement-dbcreation-script" deleted
+deployment.apps "mysql" deleted
+service "mysql" deleted
+deployment.apps "usermgmt-webapp" deleted
+service "usermgmt-webapp-service" deleted
 ```
