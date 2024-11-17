@@ -30,4 +30,42 @@ Name                       Location    ResourceGroup      KubernetesVersion    C
 terraform-aks-dev-cluster  centralus   terraform-aks-dev  1.30.5               1.30.5                      Succeeded            terraform-aks-dev-cluster-v9d60zfc.hcp.centralus.azmk8s.io
 ```
 
+## Deploy the webserver Application
 
+```shell
+k apply -f ./kubernetes/manifests/apps/webserver/
+deployment.apps/app1-nginx-deployment created
+service/app1-nginx-clusterip-service created
+```
+
+### Validate the Webserver Application
+
+Get the IP Address of the `app1-nginx-clusterip-service` service.
+
+```shell
+http://IP_LOAD_BALANCER/app1/
+```
+
+## Deploy the Java Application
+
+```shell
+k apply -f ./kubernetes/manifests/apps/java
+storageclass.storage.k8s.io/managed-premium-retain-sc created
+persistentvolumeclaim/azure-managed-disk-pvc created
+configmap/usermanagement-dbcreation-script created
+deployment.apps/mysql created
+service/mysql created
+deployment.apps/usermgmt-webapp created
+service/usermgmt-webapp-service created
+```
+
+### Validate the Java Application
+
+Get the IP Address of the `usermgmt-webapp-service` service.
+
+```shell
+http://IP_LOAD_BALANCER
+
+Username: admin101
+Password: password101
+```
