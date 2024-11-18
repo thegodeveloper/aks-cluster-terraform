@@ -8,6 +8,8 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      TF_VERSION: v1.9.8
     steps:
       - name: Azure Login
         uses: azure/login@v1
@@ -16,9 +18,22 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Azure CLI Script
-        uses: azure/CLI@v1
+      - name: Checkout
+        uses: actions/checout@v2
+
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v2
         with:
-          azcliversion: latest
-          inlineScript: |
-            az account show
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -auto-approve
