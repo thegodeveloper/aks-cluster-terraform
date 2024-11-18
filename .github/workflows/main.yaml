@@ -22,6 +22,14 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Set Azure environment variables
+        run: |
+          echo "Setting Azure environment variables"
+          echo "TF_VAR_subscription_id=$(jq -r '.subscriptionId' <<< '${{ secrets.AZURE_CREDENTIALS }}')" >> $GITHUB_ENV
+          echo "TF_VAR_client_id=$(jq -r '.clientId' <<< '${{ secrets.AZURE_CREDENTIALS }}')" >> $GITHUB_ENV
+          echo "TF_VAR_client_secret=$(jq -r '.clientSecret' <<< '${{ secrets.AZURE_CREDENTIALS }}')" >> $GITHUB_ENV
+          echo "TF_VAR_tenant_id=$(jq -r '.tenantId' <<< '${{ secrets.AZURE_CREDENTIALS }}')" >> $GITHUB_ENV
+
       - name: Checkout
         uses: actions/checkout@v2
 
