@@ -14,7 +14,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform-manifests/cluster-custom-vnet
+        working-directory: terraform-manifests/cluster-custom-vnet
 
     steps:
       - name: Azure Login
